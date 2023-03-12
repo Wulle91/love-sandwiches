@@ -59,6 +59,15 @@ def update_sales_worksheet(data):
     sales_worksheet = SHEET.worksheet('sales')
     sales_worksheet.append_row(data)
     print('Sales worksheet updated successfully.\n')
+
+def calculate_surplus_data(data):
+    """
+    Update surplus worksheet, add new row with list data provided
+    """
+    print('Calculate surplus worksheet...\n')
+    surplus_worksheet = SHEET.worksheet('surplus')
+    surplus_worksheet.append_row(data)
+    print('Surplus worksheet updated successfully.\n')
     
 def calculate_sulpurs_data(sales_row):
     """
@@ -83,7 +92,7 @@ def main():
     sales_data = [int(num) for num in data]
     update_sales_worksheet(sales_data)
     new_surplus_data = calculate_sulpurs_data(sales_data)
-    print(new_surplus_data)
+    calculate_surplus_data(new_surplus_data)
     
 print('Welcome to Love Sandiches Data Automation')
 main()
