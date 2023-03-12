@@ -81,6 +81,19 @@ def calculate_sulpurs_data(sales_row):
     
     return surplus_data
    
+def get_last_5_enteries_sales():
+    """
+    Collects collumns of data frpm sales worksheet, collesting the last 5 
+    enteries for each sandwich and returns the data as a list of lists 
+    """
+    sales = SHEET.worksheet('sales')
+    
+    columns = []
+    for ind in range(1,7):
+        column = sales.col_values(ind)[-5:]
+        columns.append(column)
+    pprint(columns)
+   
 def main():    
     data = get_sales_data()
     sales_data = [int(num) for num in data]
@@ -89,4 +102,5 @@ def main():
     update_worksheet(new_surplus_data, 'surplus')
     
 print('Welcome to Love Sandiches Data Automation')
-main()
+#main()
+get_last_5_enteries_sales()
