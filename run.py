@@ -92,7 +92,22 @@ def get_last_5_enteries_sales():
     for ind in range(1,7):
         column = sales.col_values(ind)[-5:]
         columns.append(column)
-    pprint(columns)
+    return columns
+
+def calclate_stock_data(data):
+    """
+    Calcalculate the avarege stock for each item type, adding 10%
+    """
+    print('Claculating stock data...\n')
+    new_stock_data = []
+    
+    for column in data:
+        int_column = [int(num) for num in column]
+        average = sum(int_column) / len(int_column)
+        stock_num = average * 1.1
+        new_stock_data.append(round(stock_num))
+        
+    return new_stock_data
    
 def main():    
     data = get_sales_data()
@@ -100,7 +115,10 @@ def main():
     update_worksheet(sales_data, 'sales')
     new_surplus_data = calculate_sulpurs_data(sales_data)
     update_worksheet(new_surplus_data, 'surplus')
-    
+    sales_columns = get_last_5_enteries_sales()
+    stock_data = calclate_stock_data(sales_columns)
+    update_worksheet(stock_data, 'stock')
+
 print('Welcome to Love Sandiches Data Automation')
-#main()
-get_last_5_enteries_sales()
+main()
+
